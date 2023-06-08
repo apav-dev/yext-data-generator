@@ -37,7 +37,7 @@ def generate_reviews(average_rating, product_name, oldest_date, product_type):
         prompt=format_prompt(average_rating, product_name,
                              oldest_date, product_type),
         max_tokens=2048,
-        temperature=0.7,
+        temperature=0.9,
     )
 
     try:
@@ -52,7 +52,7 @@ def get_all_products():
     page_token = None
 
     while True:
-        data = get_product_data("Skis", page_token=page_token)
+        data = get_product_data(page_token=page_token, product_type="Skis")
         response = data.get('response')
         for product in response.get('docs', []):
             product_id = product.get('id')
